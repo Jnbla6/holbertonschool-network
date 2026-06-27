@@ -11,7 +11,7 @@ Below is a diagram illustrating the entire flow of the request:
 ```mermaid
 graph TD
     Client["Browser/Client"] -->|1. Request IP for google.com| DNS["DNS Resolver"]
-    DNS -->|2. Returns IP: 142.250.190.4| Client
+    DNS -->|2. Returns IP 142.250.190.4| Client
     Client -->|3. HTTPS Request over TCP Port 443| FW["Firewall"]
     FW -->|4. Encrypted Traffic Allowed| LB["Load Balancer"]
     LB -->|5. Distributes Traffic| WS1["Web Server 1"]
@@ -20,7 +20,7 @@ graph TD
     AS -->|7. Queries Data| DB[("Database")]
     DB -->|8. Returns Data| AS
     AS -->|9. Generates HTML| WS1
-    WS1 -->|10. Serves Web Page (Encrypted)| Client
+    WS1 -->|10. Serves Web Page - Encrypted| Client
 ```
 
 ## 1. DNS Request
