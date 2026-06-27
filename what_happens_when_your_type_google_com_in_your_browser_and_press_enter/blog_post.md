@@ -4,6 +4,25 @@ It is one of the most popular interview questions for software engineers, and fo
 
 Let's break down this process step-by-step.
 
+## Architecture Flow Diagram
+
+Below is a diagram illustrating the entire flow of the request:
+
+```mermaid
+graph TD
+    Client["Browser/Client"] -->|1. Request IP for google.com| DNS["DNS Resolver"]
+    DNS -->|2. Returns IP: 142.250.190.4| Client
+    Client -->|3. HTTPS Request over TCP Port 443| FW["Firewall"]
+    FW -->|4. Encrypted Traffic Allowed| LB["Load Balancer"]
+    LB -->|5. Distributes Traffic| WS1["Web Server 1"]
+    LB -->|5. Distributes Traffic| WS2["Web Server 2"]
+    WS1 -->|6. Requests Dynamic Content| AS["Application Server"]
+    AS -->|7. Queries Data| DB[("Database")]
+    DB -->|8. Returns Data| AS
+    AS -->|9. Generates HTML| WS1
+    WS1 -->|10. Serves Web Page (Encrypted)| Client
+```
+
 ## 1. DNS Request
 Before your browser can connect to Google's servers, it needs to know the server's IP address. Humans use domain names (like `www.google.com`), but computers communicate using IP addresses (like `142.250.190.4`).
 - Your browser first checks its own cache, the operating system's cache, the router's cache, and the ISP's cache to see if it already knows the IP address for `www.google.com`.
